@@ -21,7 +21,7 @@ function Sign_in() {
             setIsLoggedIn(true);
             setUserData(user);
             console.log("Login Successful!");
-            window.location.href = "/Content"; // Chuyển hướng đến trang Home nếu đăng nhập thành công
+            window.location.href = "/Sign_up"; // Chuyển hướng đến trang Home nếu đăng nhập thành công
           } else {
             console.log("Invalid credentials!");
           }

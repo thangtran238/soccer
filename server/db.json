@@ -81,12 +81,6 @@
       "email": "khanh@gmail.com",
       "password": "456",
       "id": 2
-    },
-    {
-      "name": "haha",
-      "email": "haha@gmail.com",
-      "password": "098",
-      "id": 3
     }
   ]
 }
