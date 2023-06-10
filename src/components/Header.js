@@ -76,9 +76,10 @@ export default function Header() {
               </ul>
             </div>
           </div>
+  
           <div className="col-sm-3">
             <div className="search_box pull-right">
-              <input type="text" placeholder="Search" />
+              <input type="text" placeholder="Search"/>
             </div>
           </div>
         </div>
