@@ -10,10 +10,6 @@ export default function Card({ id, name, age, country, image, category_id, club_
             <h2>{country}</h2>
             <p>{name}</p>
             <p>{age}</p>
-            {/* <a href={'id'} className="btn btn-default add-to-cart">
-              <i className="fa fa-shopping-cart" />
-              Buy
-            </a> */}
           </div>
           <div className="product-overlay">
             <div className="overlay-content">
