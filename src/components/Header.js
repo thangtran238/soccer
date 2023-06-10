@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Navbar, Nav } from 'react-bootstrap';
 export default function Header() {
   return (
     <header id="header">
@@ -49,7 +49,7 @@ export default function Header() {
                       <a href="cart.html">Cart</a>
                     </li>
                     <li>
-                      <a href="login.html">Login</a>
+                   
                     </li>
                   </ul>
                 </li>
@@ -72,6 +72,12 @@ export default function Header() {
                 </li>
                 <li>
                   <a href="contact-us.html">Contact</a>
+                </li>
+                <li>
+                <Nav.Link href={"/Sign_in"}>Login </Nav.Link>
+                </li>
+                <li>
+                <Nav.Link href={"/Sign_up"}>Register</Nav.Link>
                 </li>
               </ul>
             </div>
