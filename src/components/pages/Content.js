@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-import Header from "./Header";
 import Card from "./Card";
+
 export default function Content() {
   const [players, setPlayer] = useState([]);
   useEffect(() => {
@@ -18,16 +18,6 @@ export default function Content() {
   }, []);
   return (
     <div>
-      {/*[if lt IE 9]>
-        
-        
-        <![endif]*/}
-
-      {/*/head*/}
-      <Header />
-      {/*/header*/}
-
-      {/*/slider*/}
       <section>
         <div className="container">
           <div className="row">

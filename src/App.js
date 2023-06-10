@@ -1,12 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import Content from './components/Content';
-
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {routes} from "./routes";
 
 function App() {
+  const pathInFile = (ways) =>
+    ways.map((way) => (
+      <Route key={way.path} path={way.path} element={way.element} index={way.index} />
+    ));
+
   return (
     <>
-    <Content/>
+      <Router>
+        <Routes>{pathInFile(routes)}</Routes>
+      </Router>
     </>
   );
 }
