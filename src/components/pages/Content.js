@@ -1,19 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import Header from "./Header";
 export default function Content() {
   return (
     <div>
-      {/*[if lt IE 9]>
-        
-        
-        <![endif]*/}
-
-      {/*/head*/}
-     <Header />
-      {/*/header*/}
-
-      {/*/slider*/}
       <section>
         <div className="container">
           <div className="row">
