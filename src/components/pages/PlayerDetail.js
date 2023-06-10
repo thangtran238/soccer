@@ -1,21 +1,22 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 
-const PlayerDetail = ({ playerId }) => {
+const PlayerDetail = () => {
+  const { id } = useParams();
   const [player, setPlayer] = useState(null);
 
   useEffect(() => {
-    const fetchPlayerData = async () => {
-      try {
-        const response = await fetch(`/api/players/${playerId}`);
-        const data = await response.json();
+    axios
+      .get(`http://localhost:3000/players/${id}`)
+      .then((res) => {
+        const data = res.data;
         setPlayer(data);
-      } catch (error) {
-        console.error("Error fetching player data:", error);
-      }
-    };
-
-    fetchPlayerData();
-  }, [playerId]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
 
   if (!player) {
     return <div>Loading player data...</div>;
@@ -24,7 +25,6 @@ const PlayerDetail = ({ playerId }) => {
   return (
     <div>
       <h2>Player Details</h2>
-      aaaaaa
       <p>Name: {player.name}</p>
       <p>Age: {player.age}</p>
       <p>Country: {player.country}</p>
