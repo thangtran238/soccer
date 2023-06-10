@@ -24,6 +24,7 @@ const PlayerDetail = ({ playerId }) => {
   return (
     <div>
       <h2>Player Details</h2>
+      aaaaaa
       <p>Name: {player.name}</p>
       <p>Age: {player.age}</p>
       <p>Country: {player.country}</p>
