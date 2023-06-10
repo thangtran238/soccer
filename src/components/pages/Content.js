@@ -1,5 +1,8 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Card from "./Card";
+
 export default function Content() {
   return (
     <div>
