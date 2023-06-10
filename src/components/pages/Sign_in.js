@@ -9,9 +9,9 @@ function Sign_in() {
     if (email === "admin@gmail.com" && password === "admin123") {
       setIsLoggedIn(true);
       console.log("Login Successful!");
-      window.location.href = "/Content"; // Chuyển hướng đến trang Home nếu đăng nhập thành công
+      window.location.href = "/"; // Chuyển hướng đến trang Home nếu đăng nhập thành công
     } else {
-        window.location.href = "/HomeUser";
+        alert("something wrong")
     }
   }
   return (
