@@ -5,9 +5,8 @@ import Card from "./Card";
 export default function Content() {
   const [allPlayers, setAllPlayers] = useState([]);
   const [filteredPlayers, setFilteredPlayers] = useState([]);
-  const [name, setName] = useState('');
-  const [country, setCountry] = useState('');
-  const [age, setAge] = useState('');
+  const [country, setCountry] = useState("");
+  const [ageRange, setAgeRange] = useState("");
 
   useEffect(() => {
     axios
@@ -22,79 +21,155 @@ export default function Content() {
       });
   }, []);
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
+  useEffect(() => {
+    const filteredResults = allPlayers.filter((player) => {
+      const isCountryMatched =
+        country === "" ||
+        player.country.toLowerCase() === country.toLowerCase() ||
+        (country === "All" && player.country !== "");
+
+      const isAgeRangeMatched =
+        ageRange === "" || ageRangeFilter(ageRange, player.age);
+
+      return isCountryMatched && isAgeRangeMatched;
+    });
+
+    setFilteredPlayers(filteredResults);
+  }, [country, ageRange]);
 
   const handleCountryChange = (event) => {
     setCountry(event.target.value);
   };
 
-  const handleAgeChange = (event) => {
-    setAge(event.target.value);
+  const handleAgeRangeChange = (event) => {
+    setAgeRange(event.target.value);
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    const filteredResults = allPlayers.filter((player) => {
-      const isNameMatched = name !== '' && player.name.toLowerCase() === name.toLowerCase();
-      const isCountryMatched = country !== '' && player.country.toLowerCase() === country.toLowerCase();
-      const isAgeMatched = age !== '' && player.age.toString() === age;
-      return isNameMatched || isCountryMatched || isAgeMatched;
-    });
-
-    setFilteredPlayers(filteredResults);
+  const ageRangeFilter = (range, age) => {
+    switch (range) {
+      case "All":
+        return true;
+      case "18-25":
+        return age >= 18 && age <= 25;
+      case "26-35":
+        return age >= 26 && age <= 35;
+      case ">35":
+        return age > 35;
+      default:
+        return false;
+    }
   };
 
   return (
     <div>
       <section>
-      <form onSubmit={onSubmit} className="small-form">
-          <div className="mt-3">
-            <input
-              className="form-control search mb-3"
-              name="name"
-              value={name}
-              onChange={handleNameChange}
-              type="search"
-              placeholder="Name"
-              aria-label="Name"
-            />
-            <input
-              className="form-control search mb-3"
-              name="club_id"
-              value={country}
-              onChange={handleCountryChange}
-              type="search"
-              placeholder="Country"
-              aria-label="Country"
-            />
-            <input
-              className="form-control search mb-3"
-              name="age"
-              value={age}
-              onChange={handleAgeChange}
-              type="search"
-              placeholder="Age"
-              aria-label="Age"
-            />
-          </div>
-          <button type="submit">Tìm</button>
-        </form>
         <div className="container">
           <div className="row">
             <div className="col-sm-3">
               <div className="left-sidebar">
-                <div className="shipping text-center">
-                  <img src="images/home/gallery2.jpg" alt="" />
-                </div>
-                <div className="shipping text-center">
-                  <img src="images/home/shipping.jpg" alt="" />
-                </div>
-                <div className="shipping text-center">
-                  <img src="images/home/shipping.jpg" alt="" />
-                </div>
+                <form className="small-form">
+                  <div className="mt-3">
+                    <h4>Countries</h4>
+                    <div>
+                      <label>
+                        <input
+                          type="radio"
+                          name="country"
+                          value=""
+                          checked={country === ""}
+                          onChange={handleCountryChange}
+                        />
+                        All Countries
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input
+                          type="radio"
+                          name="country"
+                          value="Spain"
+                          checked={country === "Spain"}
+                          onChange={handleCountryChange}
+                        />
+                        Spain
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input
+                          type="radio"
+                          name="country"
+                          value="England"
+                          checked={country === "England"}
+                          onChange={handleCountryChange}
+                        />
+                        England
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input
+                          type="radio"
+                          name="country"
+                          value="France"
+                          checked={country === "France"}
+                          onChange={handleCountryChange}
+                        />
+                        France
+                      </label>
+                    </div>
+                  </div>
+                  <div className="mt-3">
+                    <h4>Ages</h4>
+                    <label>
+                      <input
+                        type="radio"
+                        name="ageRange"
+                        value="All"
+                        checked={ageRange === "All"}
+                        onChange={handleAgeRangeChange}
+                      />
+                      All Ages
+                    </label>
+
+                    <div>
+                      <label>
+                        <input
+                          type="radio"
+                          name="ageRange"
+                          value="18-25"
+                          checked={ageRange === "18-25"}
+                          onChange={handleAgeRangeChange}
+                        />
+                        18-25
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input
+                          type="radio"
+                          name="ageRange"
+                          value="26-35"
+                          checked={ageRange === "26-35"}
+                          onChange={handleAgeRangeChange}
+                        />
+                        26-35
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input
+                          type="radio"
+                          name="ageRange"
+                          value=">35"
+                          checked={ageRange === ">35"}
+                          onChange={handleAgeRangeChange}
+                        />
+                        35+
+                      </label>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
             <div className="col-sm-9 padding-right">
@@ -113,11 +188,33 @@ export default function Content() {
               </div>
               <div className="features_items">
                 <h2 className="title text-center">Cầu thủ trẻ</h2>
-                {/* Add code to filter and render young players */}
+                {filteredPlayers
+                  .filter((player) =>  player.age < 24)
+                  .map((suit) => (
+                    <Card
+                      key={suit.id}
+                      id={suit.id}
+                      name={suit.name}
+                      age={suit.age}
+                      image={suit.image}
+                      country={suit.country}
+                    />
+                  ))}
               </div>
               <div className="features_items">
                 <h2 className="title text-center">Ngôi sao</h2>
-                {/* Add code to filter and render star players */}
+                {filteredPlayers
+                  .filter((player) =>  player.category_id === 2)
+                  .map((suit) => (
+                    <Card
+                      key={suit.id}
+                      id={suit.id}
+                      name={suit.name}
+                      age={suit.age}
+                      image={suit.image}
+                      country={suit.country}
+                    />
+                  ))}
               </div>
             </div>
           </div>

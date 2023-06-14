@@ -1,3 +1,4 @@
+import Contactpage from "./components/Contactpage";
 import Homepage from "./components/Homepage";
 import PlayerDetail from "./components/pages/PlayerDetail";
 import Sign_in from "./components/pages/Sign_in";
@@ -22,7 +23,11 @@ export const routes = [
     path: "/player-detail/:id",
     element: <PlayerDetail />,
     index: false
-
+  },
+  {
+    path: "/contact",
+    element: <Contactpage />,
+    index: false
   }
 ];
 

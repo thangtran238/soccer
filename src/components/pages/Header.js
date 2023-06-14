@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl } from 'react-bootstrap';
-
+import { Link } from "react-router-dom";
 import { Navbar, Nav, Form, button } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -38,9 +38,9 @@ export default function Header() {
               <div className="mainmenu pull-left">
                 <ul className="nav navbar-nav collapse navbar-collapse">
                   <li>
-                    <a href="index.html" className="active">
+                    <Link to="/" className="active">
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li className="dropdown">
                     <a href="#">
@@ -81,7 +81,7 @@ export default function Header() {
                     <a href="404.html">404</a>
                   </li>
                   <li>
-                    <a href="contact-us.html">Contact</a>
+                    <Link to="/contact">Contact</Link>
                   </li>
                   <li>
                     <Nav.Link href="/Sign_in">Login</Nav.Link>
