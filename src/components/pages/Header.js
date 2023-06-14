@@ -134,26 +134,6 @@ export default function Header() {
                   <button type='submit'>Tìm</button> */}
 
             </div>
-
-                <table className="table table-bordered table-hover mt-6 ml-5">
-                  {/* <thead>
-                    <tr>
-                      <th className="text-center">STT</th>
-                      <th className="text-center">Image</th>
-                      <th className="text-center">Tên Cầu Thủ</th>
-                      <th className="text-center">Tuổi</th>
-                      <th className="text-center">Quốc tịch</th>
-                    </tr>
-                  </thead> */}
-                  {/* <tbody>
-                      {search.map((player, index) => (
-                        <Item key={index} index={index} player={player} onDelete={this.onDelete} />
-                      ))}
-                    </tbody> */}
-                </table>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -3,10 +3,15 @@ import axios from "axios";
 import Card from "./Card";
 
 export default function Content() {
+
+
+
   const [allPlayers, setAllPlayers] = useState([]);
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [country, setCountry] = useState("");
   const [ageRange, setAgeRange] = useState("");
+  const [keyword, setKeyword] = useState("");
+
 
   useEffect(() => {
     axios
@@ -20,6 +25,16 @@ export default function Content() {
         console.log(err);
       });
   }, []);
+
+  const handleSearch = () => {
+    const filteredPlayers = players.filter((player) => {
+      const playerName = player.name.toLowerCase();
+      const lowercaseKeyword = keyword.toLowerCase();
+      return playerName.includes(lowercaseKeyword);
+    });
+
+    setAllPlayers(filteredPlayers);
+
 
   useEffect(() => {
     const filteredResults = allPlayers.filter((player) => {
@@ -62,11 +77,28 @@ export default function Content() {
 
   return (
     <div>
+ <div class="formcontrol" style={{display: "flex", marginLeft: "1000px",paddingBottom:"80px"}}>
+
+        <input
+          className="form-control search mb-10 ml-20"
+          style={{ width: 600 }}
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          type="search"
+          placeholder="Searchhhh"
+          aria-label="Search"
+        />
+        <button
+          className="card-button btn btn-primary"onClick={handleSearch}>
+          Tìm kiếm
+        </button>
+      </div>
       <section>
         <div className="container">
           <div className="row">
             <div className="col-sm-3">
               <div className="left-sidebar">
+
                 <form className="small-form">
                   <div className="mt-3">
                     <h4>Countries</h4>
@@ -170,6 +202,7 @@ export default function Content() {
                     </div>
                   </div>
                 </form>
+
               </div>
             </div>
             <div className="col-sm-9 padding-right">
