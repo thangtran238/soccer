@@ -3,15 +3,11 @@ import axios from "axios";
 import Card from "./Card";
 
 export default function Content() {
-
-
-
   const [allPlayers, setAllPlayers] = useState([]);
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [country, setCountry] = useState("");
   const [ageRange, setAgeRange] = useState("");
   const [keyword, setKeyword] = useState("");
-
 
   useEffect(() => {
     axios
@@ -26,18 +22,14 @@ export default function Content() {
       });
   }, []);
 
+  useEffect(() => {
+    handleSearch();
+  }, [keyword, country, ageRange]);
+
   const handleSearch = () => {
-    const filteredPlayers = players.filter((player) => {
+    const filteredPlayers = allPlayers.filter((player) => {
       const playerName = player.name.toLowerCase();
       const lowercaseKeyword = keyword.toLowerCase();
-      return playerName.includes(lowercaseKeyword);
-    });
-
-    setAllPlayers(filteredPlayers);
-
-
-  useEffect(() => {
-    const filteredResults = allPlayers.filter((player) => {
       const isCountryMatched =
         country === "" ||
         player.country.toLowerCase() === country.toLowerCase() ||
@@ -46,11 +38,15 @@ export default function Content() {
       const isAgeRangeMatched =
         ageRange === "" || ageRangeFilter(ageRange, player.age);
 
-      return isCountryMatched && isAgeRangeMatched;
+      return (
+        playerName.includes(lowercaseKeyword) &&
+        isCountryMatched &&
+        isAgeRangeMatched
+      );
     });
 
-    setFilteredPlayers(filteredResults);
-  }, [country, ageRange]);
+    setFilteredPlayers(filteredPlayers);
+  };
 
   const handleCountryChange = (event) => {
     setCountry(event.target.value);
@@ -77,19 +73,17 @@ export default function Content() {
 
   return (
     <div>
- <div class="formcontrol" style={{display: "flex", marginLeft: "1000px",paddingBottom:"80px"}}>
-
+      <div className="form-control" style={{ display: "flex", marginLeft: "1000px", paddingBottom: "80px" }}>
         <input
           className="form-control search mb-10 ml-20"
-          style={{ width: 600 }}
+          style={{ width: 400 }}
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           type="search"
-          placeholder="Searchhhh"
+          placeholder="Search"
           aria-label="Search"
         />
-        <button
-          className="card-button btn btn-primary"onClick={handleSearch}>
+        <button className="btn btn-primary" onClick={handleSearch}>
           Tìm kiếm
         </button>
       </div>
@@ -98,7 +92,6 @@ export default function Content() {
           <div className="row">
             <div className="col-sm-3">
               <div className="left-sidebar">
-
                 <form className="small-form">
                   <div className="mt-3">
                     <h4>Countries</h4>
@@ -163,7 +156,6 @@ export default function Content() {
                       />
                       All Ages
                     </label>
-
                     <div>
                       <label>
                         <input
@@ -202,7 +194,6 @@ export default function Content() {
                     </div>
                   </div>
                 </form>
-
               </div>
             </div>
             <div className="col-sm-9 padding-right">
@@ -222,30 +213,30 @@ export default function Content() {
               <div className="features_items">
                 <h2 className="title text-center">Cầu thủ trẻ</h2>
                 {filteredPlayers
-                  .filter((player) =>  player.age < 24)
-                  .map((suit) => (
+                  .filter((player) => player.age < 24)
+                  .map((player) => (
                     <Card
-                      key={suit.id}
-                      id={suit.id}
-                      name={suit.name}
-                      age={suit.age}
-                      image={suit.image}
-                      country={suit.country}
+                      key={player.id}
+                      id={player.id}
+                      name={player.name}
+                      age={player.age}
+                      image={player.image}
+                      country={player.country}
                     />
                   ))}
               </div>
               <div className="features_items">
                 <h2 className="title text-center">Ngôi sao</h2>
                 {filteredPlayers
-                  .filter((player) =>  player.category_id === 2)
-                  .map((suit) => (
+                  .filter((player) => player.category_id === 2)
+                  .map((player) => (
                     <Card
-                      key={suit.id}
-                      id={suit.id}
-                      name={suit.name}
-                      age={suit.age}
-                      image={suit.image}
-                      country={suit.country}
+                      key={player.id}
+                      id={player.id}
+                      name={player.name}
+                      age={player.age}
+                      image={player.image}
+                      country={player.country}
                     />
                   ))}
               </div>

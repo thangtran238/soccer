@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { FormControl } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Form, button } from 'react-bootstrap';
-import axios from 'axios';
+import { Navbar, Nav, Form, button } from "react-bootstrap";
+import axios from "axios";
 
 export default function Header() {
-
-  // let search = players.filter(player => {
-  //   const nameMatch = player.name.toLowerCase().includes(name.toLowerCase());
-  //   const countryMatch = player.country.toLowerCase().includes(country.toLowerCase());
-  //   const club_idMatch = typeof player.club_id === 'string' && player.club_id.toLowerCase().includes(club_id.toLowerCase());
-
-  //   return nameMatch && countryMatch && club_idMatch;
-  // });
-
   return (
     <header id="header">
       {/*header*/}
@@ -95,7 +86,6 @@ export default function Header() {
             <div className="col-sm-3">
               <div className="search_box pull-right">
                 <div>
-
                   {/* <FormControl
                     type="text"
                     name="reach"
@@ -132,13 +122,13 @@ export default function Header() {
                     />
                   </div>
                   <button type='submit'>Tìm</button> */}
-
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-      {/*header-bottom*/}
     </header>
   );
 }
-
