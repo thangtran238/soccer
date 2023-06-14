@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
 
 export default function Content() {
   const [players, setPlayer] = useState([]);
+  const [keyword, setKeyword] = useState("");
   useEffect(() => {
     axios
       .get("http://localhost:3000/players")
@@ -16,26 +16,51 @@ export default function Content() {
         console.log(err);
       });
   }, []);
+  const handleSearch = () => {
+    const filteredPlayers = players.filter((player) => {
+      const playerName = player.name.toLowerCase();
+      const lowercaseKeyword = keyword.toLowerCase();
+      return playerName.includes(lowercaseKeyword);
+    });
+
+    setPlayer(filteredPlayers);
+  };
+
   return (
     <div>
+ <div class="formcontrol" style={{display: "flex", marginLeft: "1000px",paddingBottom:"80px"}}>
+
+        <input
+          className="form-control search mb-10 ml-20"
+          style={{ width: 600 }}
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          type="search"
+          placeholder="Searchhhh"
+          aria-label="Search"
+        />
+        <button
+          className="card-button btn btn-primary"onClick={handleSearch}>
+          Tìm kiếm
+        </button>
+      </div>
       <section>
         <div className="container">
           <div className="row">
             <div className="col-sm-3">
-            <div className="left-sidebar">
-                 {/*/price-range*/}
-                 <div className="shipping text-center">
+              <div className="left-sidebar">
+                {/*/price-range*/}
+                <div className="shipping text-center">
                   <img src="images/home/gallery2.jpg" alt="" />
                 </div>
                 {/*/price-range*/}
                 <div className="shipping text-center">
                   <img src="images/home/shipping.jpg" alt="" />
                 </div>
-          
+
                 <div className="shipping text-center">
                   <img src="images/home/shipping.jpg" alt="" />
                 </div>
-
               </div>
             </div>
             <div className="col-sm-9 padding-right">
