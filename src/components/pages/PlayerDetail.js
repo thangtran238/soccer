@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
 
 const PlayerDetail = () => {
   const { id } = useParams();
@@ -23,13 +25,27 @@ const PlayerDetail = () => {
   }
 
   return (
+    <>
     <div>
-      <h2>Player Details</h2>
-      <p>Name: {player.name}</p>
-      <p>Age: {player.age}</p>
-      <p>Country: {player.country}</p>
-      <p>CLB: {player.CLB}</p>
+      <Link to="/">Return to homepage</Link>
     </div>
+    <div className="mx-auto d-flex justify-content-center align-items-center">
+      <img
+        src={`/images/${player.image}`}
+        className="object-fit-cover"
+        alt=""
+        width={200}
+        height={200}
+      />
+      <div className="card-body">
+        <h5 className="card-title">Player Details</h5>
+        <p className="card-text">Name: {player.name}</p>
+        <p className="card-text">Age: {player.age}</p>
+        <p className="card-text">Country: {player.country}</p>
+        <p className="card-text">CLB: {player.CLB}</p>
+      </div>
+    </div>
+    </>
   );
 };
 
