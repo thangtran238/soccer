@@ -14,7 +14,7 @@ function Sign_up() {
         password: password,
       };
       axios
-        .post("http://localhost:3000/user", data)
+        .post("https://soccer-player.onrender.com/user", data)
         .then((response) => {
           if (response.status >0){
             setShowSuccessMessage(true);
