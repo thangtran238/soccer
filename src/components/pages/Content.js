@@ -73,20 +73,6 @@ export default function Content() {
 
   return (
     <div>
-      <div className="form-control" style={{ display: "flex", marginLeft: "1000px", paddingBottom: "80px" }}>
-        <input
-          className="form-control search mb-10 ml-20"
-          style={{ width: 400 }}
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button className="btn btn-primary" onClick={handleSearch}>
-          Tìm kiếm
-        </button>
-      </div>
       <section>
         <div className="container">
           <div className="row">
@@ -103,6 +89,7 @@ export default function Content() {
                           value=""
                           checked={country === ""}
                           onChange={handleCountryChange}
+                          defaultChecked
                         />
                         All Countries
                       </label>
@@ -153,6 +140,8 @@ export default function Content() {
                         value="All"
                         checked={ageRange === "All"}
                         onChange={handleAgeRangeChange}
+                        defaultChecked
+
                       />
                       All Ages
                     </label>
@@ -197,6 +186,19 @@ export default function Content() {
               </div>
             </div>
             <div className="col-sm-9 padding-right">
+              <div
+                className="form-outline"
+                style={{ display: "flex", paddingBottom: "80px" }}
+              >
+                <input
+                  className="form-control search py-4"
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  type="search"
+                  placeholder="Search Player By Name"
+                  aria-label="Search"
+                />
+              </div>
               <div className="features_items">
                 <h2 className="title text-center">Cầu thủ nổi bật</h2>
                 {filteredPlayers.map((player, index) => (
