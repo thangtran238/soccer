@@ -11,7 +11,7 @@ export default function Content() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/players")
+      .get("https://soccer-player.onrender.com/players")
       .then((res) => {
         const data = res.data;
         setAllPlayers(data);

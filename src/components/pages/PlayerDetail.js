@@ -10,7 +10,7 @@ const PlayerDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/players/${id}`)
+      .get(`https://soccer-player.onrender.com/players/${id}`)
       .then((res) => {
         const data = res.data;
         setPlayer(data);
